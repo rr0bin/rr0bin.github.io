@@ -11,3 +11,34 @@
   </audio>
   </body>
 </html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music</title>
+</head>
+  <body>
+    <audio controls autoplay style="display:none;" id="audioplayer">
+    <source src="Music.mp3" type="audio/mpeg"></source>
+  </audio>
+<script>
+const audio = document.getElementById('audioplayer');
+
+// Try autoplay immediately
+audio.play().catch(() => {
+  // If blocked, wait for ANY interaction
+  const resume = () => {
+    audio.play();
+    document.removeEventListener('click', resume);
+    document.removeEventListener('keydown', resume);
+    document.removeEventListener('touchstart', resume);
+  };
+
+  document.addEventListener('click', resume);
+  document.addEventListener('keydown', resume);
+  document.addEventListener('touchstart', resume);
+});
+</script>
+  </body>
+</html>
