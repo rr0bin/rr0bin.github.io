@@ -6,8 +6,12 @@
     <title>Music</title>
 </head>
   <body>
-    <audio controls autoplay style="display:none;">
+    <audio controls autoplay style="display:none;" id="audioplayer">
     <source src="Music.mp3" type="audio/mpeg"></source>
   </audio>
+<script>
+const audio = document.getElementById('audioplayer');
+audio.play();
+</script>
   </body>
 </html>
