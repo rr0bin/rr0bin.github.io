@@ -11,7 +11,21 @@
   </audio>
 <script>
 const audio = document.getElementById('audioplayer');
-audio.play();
+
+// Try autoplay immediately
+audio.play().catch(() => {
+  // If blocked, wait for ANY interaction
+  const resume = () => {
+    audio.play();
+    document.removeEventListener('click', resume);
+    document.removeEventListener('keydown', resume);
+    document.removeEventListener('touchstart', resume);
+  };
+
+  document.addEventListener('click', resume);
+  document.addEventListener('keydown', resume);
+  document.addEventListener('touchstart', resume);
+});
 </script>
   </body>
 </html>
